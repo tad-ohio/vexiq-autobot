@@ -80,6 +80,8 @@ task main()
 
 	srand(nClockMinutes); //Seeds the rand( generator
 
+	clearTimer(t1);
+
 	while(true)
 	{
 		if (nPgmTime < 60*1000)	//Only executes for 60 seconds or until the battery level gets below 30%
@@ -91,6 +93,13 @@ task main()
 					if(getDistanceValue(frontDistance) < 102)	//If distance is less than 4 inches
 					{
 						SetMotorDistanceSpeedAndDirection(-360, -25);	//2 full rotations backwards
+
+						if(getBumperValue(rearBumper) == 1)	//If the bumper switch is pressed while driving backwards
+						{
+							SetMotorSpeedAndDirection(0);	//Set power zero
+
+							SetMotorDistanceSpeedAndDirection(360, 25);	//Roll forward one rotation
+						}
 
 						//Generates a random number. If the number is even (divisible by 2) turn left, else turn right
 						if(rand() % 2 == 0)
@@ -106,17 +115,9 @@ task main()
 					{
 						SetMotorSpeedAndDirection(25);	//Set power to 25% and drive forwards
 					}
-
-					if(getBumperValue(rearBumper) == 1)	//If the bumper switch is pressed while driving backwards
-					{
-						SetMotorSpeedAndDirection(0);	//Set power zero
-
-						SetMotorDistanceSpeedAndDirection(360, 25);
-					}
 				}
 				else
 				{
-					int x = time1[t1];
 					if (time1[t1] < legTime)	//Drive for leg time
 					{
 						SetMotorSpeedAndDirection(50);	//Distance is greater than 6 inches. Full throttle forward
