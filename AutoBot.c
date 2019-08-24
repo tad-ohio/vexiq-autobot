@@ -75,17 +75,26 @@ void TurnRight(int fastSpeed, int slowSpeed, int degrees)
 
 void Dance()
 {
+	setTouchLEDColor(touch, colorOrange);
 	TurnLeft(75, 0, 30);
+	setTouchLEDColor(touch, colorBlue);
 	TurnRight(75, 0, -30);
+	setTouchLEDColor(touch, colorRed);
 
 	SetMotorDistanceSpeedAndDirection(180, 50);	//1/2 rotations forwards
+	setTouchLEDColor(touch, colorGreen);
 	SetMotorDistanceSpeedAndDirection(-180, -50);	//1/2 rotations backwards
+	setTouchLEDColor(touch, colorYellow);
 
 	TurnRight(75, 0, -30);
+	setTouchLEDColor(touch, colorViolet);
 	TurnLeft(75, 0, 30);
+	setTouchLEDColor(touch, colorBlueGreen);
 
 	SetMotorDistanceSpeedAndDirection(-180, -50);	//1/2 rotations backwards
+	setTouchLEDColor(touch, colorLimeGreen);
 	SetMotorDistanceSpeedAndDirection(180, 50);	//1/2 rotations forwards
+	setTouchLEDColor(touch, colorDarkBlue);
 }
 
 task main()
@@ -182,6 +191,8 @@ task main()
 			break;
 		}
 	}
+
+	setTouchLEDColor(touch, colorNone);
 
 	playRepetitiveSound(soundPowerOff2, 200);
 }
