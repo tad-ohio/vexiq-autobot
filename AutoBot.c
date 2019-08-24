@@ -1,4 +1,5 @@
 #pragma config(Sensor, port2,  frontDistance,  sensorVexIQ_Distance)
+#pragma config(Sensor, port4,  touch,          sensorVexIQ_LED)
 #pragma config(Sensor, port9,  rearBumper,     sensorVexIQ_Touch)
 #pragma config(Sensor, port10, gyro,           sensorVexIQ_Gyro)
 #pragma config(Motor,  motor1,          leftWheel,     tmotorVexIQ, PIDControl, driveLeft, encoder)
@@ -7,6 +8,20 @@
 
 void SetMotorSpeedAndDirection(short speed)
 {
+	//Just for fun I added a touch sensor to display colors
+	if (speed > 0)
+	{
+		setTouchLEDColor(touch, colorRedViolet);
+	}
+	else if (speed < 0)
+	{
+		setTouchLEDColor(touch, colorDarkOrange);
+	}
+	else
+	{
+		setTouchLEDColor(touch, colorBlueGreen);
+	}
+
 	setMotorSpeed(leftWheel, speed);
 	setMotorSpeed(rightWheel, speed);
 }
