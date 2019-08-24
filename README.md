@@ -12,3 +12,4 @@
 
 # Change History
 - 8.23.19 TAD - Initial commit.
+-             - Added a touch sensor.
